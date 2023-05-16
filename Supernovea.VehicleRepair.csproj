@@ -17,10 +17,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\Desktop\Survival\Unturned\Servers\server1\Rocket\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,25 +34,32 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>libs\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>libs\MySql.Data.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libs\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Rocket.API">
       <HintPath>libs\Rocket.API.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Rocket.Core">
       <HintPath>libs\Rocket.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Rocket.Unturned">
       <HintPath>libs\Rocket.Unturned.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="SDG.NetTransport">
       <HintPath>libs\SDG.NetTransport.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,12 +71,15 @@
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>libs\UnityEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ItemRepairCommand.cs" />
     <Compile Include="RepairCommand.cs" />
     <Compile Include="VehicleRepair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

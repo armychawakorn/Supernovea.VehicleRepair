@@ -1,4 +1,5 @@
 ﻿using Rocket.API;
+using Rocket.Unturned.Chat;
 using Rocket.Unturned.Player;
 using SDG.Unturned;
 using System;
@@ -10,7 +11,7 @@ using UnityEngine;
 
 namespace Supernovea.VehicleRepair
 {
-    internal class RepairCommand : IRocketCommand
+    public class RepairCommand : IRocketCommand
     {
         public AllowedCaller AllowedCaller => AllowedCaller.Player;
 
@@ -32,11 +33,12 @@ namespace Supernovea.VehicleRepair
                 if (player.IsInVehicle)
                 {
                     InteractableVehicle PlayerVehicle = player.CurrentVehicle;
+                    VehicleAsset vehicle = (VehicleAsset)Assets.find(EAssetType.VEHICLE, PlayerVehicle.asset.id);
                     switch (command[0])
                     {
                         case "repair":
                             PlayerVehicle.askRepair(100);
-                            ChatManager.serverSendMessage("คุณได้ทำการซ่อมรถเรียบร้อยแล้ว", Color.green, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
+                            ChatManager.serverSendMessage($"คุณได้ซ่อม <color=#FF3557>{vehicle.vehicleName}({vehicle.id})</color> เรียบร้อยแล้ว!", Color.white, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
                             foreach (Wheel ล้อ in PlayerVehicle.tires)
                             {
                                 PlayerVehicle.askRepairTire(ล้อ.index);
@@ -44,7 +46,7 @@ namespace Supernovea.VehicleRepair
                             break;
                         case "refill":
                             player.CurrentVehicle.askFillFuel(100);
-                            ChatManager.serverSendMessage("คุณได้เติมน้ำมันให้เต็มถังเรียบร้อยแล้ว", Color.green, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
+                            ChatManager.serverSendMessage($"คุณได้เติมน้ำมันให้เต็มถังให้ <color=#FF3557>{vehicle.vehicleName}({vehicle.id})</color> เรียบร้อยแล้ว!", Color.white, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
                             break;
                         default:
                             ChatManager.serverSendMessage("คุณใช้คำสั่งผิดครับ", Color.red, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
