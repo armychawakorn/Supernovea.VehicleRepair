@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using static SDG.Provider.SteamGetInventoryResponse;
 
 namespace Supernovea.VehicleRepair
 {
@@ -30,23 +31,10 @@ namespace Supernovea.VehicleRepair
             PlayerEquipment equipment = player.Player.equipment;
             if (command.Length == 0 && equipment.isEquipped && equipment.asset != null)
             {
-                if (equipment.asset.type == EItemType.GUN)
-                {
-                    equipment.quality = 100;
-                    equipment.sendUpdateQuality();
-                    ItemGunAsset gun = (ItemGunAsset)Assets.find(EAssetType.ITEM, equipment.asset.id);
-                    ChatManager.serverSendMessage($"คุณได้ซ่อมอาวุธ <color=#FF3557>{gun.itemName}({gun.id})</color> เรียบร้อยแล้ว!", Color.white, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
-                }else if (equipment.asset.type == EItemType.MELEE)
-                {
-                    equipment.quality = 100;
-                    equipment.sendUpdateQuality();
-                    ItemMeleeAsset melee = (ItemMeleeAsset)Assets.find(EAssetType.ITEM, equipment.asset.id);
-                    ChatManager.serverSendMessage($"คุณได้ซ่อมอาวุธ <color=#FF3557>{melee.itemName}({melee.id})</color> เรียบร้อยแล้ว!", Color.white, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
-                }
-                else
-                {
-                    ChatManager.serverSendMessage("คุณไม่สามารถซ่อมสิ่งนี้ได้ครับ", Color.red, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
-                }
+                equipment.quality = 100;
+                equipment.sendUpdateQuality();
+                ItemAsset item = (ItemAsset)Assets.find(EAssetType.ITEM, equipment.asset.id);
+                ChatManager.serverSendMessage($"คุณได้ซ่อม <color=#FF3557>{item.itemName}({item.id})</color> เรียบร้อยแล้ว!", Color.white, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
             }
             else
             {

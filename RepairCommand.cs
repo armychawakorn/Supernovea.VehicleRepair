@@ -33,7 +33,7 @@ namespace Supernovea.VehicleRepair
                 if (player.IsInVehicle)
                 {
                     InteractableVehicle PlayerVehicle = player.CurrentVehicle;
-                    VehicleAsset vehicle = (VehicleAsset)Assets.find(EAssetType.VEHICLE, PlayerVehicle.asset.id);
+                    VehicleAsset vehicle = PlayerVehicle.asset;
                     switch (command[0])
                     {
                         case "repair":
@@ -45,7 +45,7 @@ namespace Supernovea.VehicleRepair
                             }
                             break;
                         case "refill":
-                            player.CurrentVehicle.askFillFuel(100);
+                            PlayerVehicle.askFillFuel(90000);
                             ChatManager.serverSendMessage($"คุณได้เติมน้ำมันให้เต็มถังให้ <color=#FF3557>{vehicle.vehicleName}({vehicle.id})</color> เรียบร้อยแล้ว!", Color.white, null, player.SteamPlayer(), EChatMode.SAY, "https://unturned.supernovea.online/services/icon?query=anya", true);
                             break;
                         default:
